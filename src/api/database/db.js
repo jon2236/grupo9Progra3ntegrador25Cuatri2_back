@@ -1,7 +1,4 @@
-//importamos el modulo que descargamos previamente
 import mysql from "mysql2/promise";
-
-// importamos el archivo de environments
 import environments  from "../config/environments.js";
 
 const { database } = environments;

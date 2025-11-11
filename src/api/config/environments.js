@@ -1,9 +1,7 @@
-// importamos el modulo dotenv
 import dotenv from "dotenv";
 
-dotenv.config(); // cargamos las variables de entorno.env
+dotenv.config();
 
-// vamps a exportar esta informacion del .env
 export default{
     port: process.env.PORT || 3500,
     database: {
