@@ -1,11 +1,9 @@
-import connection from "../database/db.js"; // importo la conexion a mi db
-
+import productModel from "../models/product.model.js";
 
 export const getAllProducts = async (req, res) => {
     try {
         // Optimizacion 1: Seleccionar solamente los campos necesarios -> name, image, category, price porque es la unica informacion que necesita ver el cliente
-        const sql = `SELECT * FROM productos`;
-        const [rows] = await connection.query(sql);
+        const [rows] = await productModel.selectAllProducts();
 
         res.status(200).json({
             payload: rows,
@@ -31,8 +29,7 @@ export const getProductById = async (req, res) => {
         //optimizacion 1: validacion de parametros antes de acceder a la db si el id no es valido
         //esta logica luego la hara un middleware validateID
 
-        let sql = `SELECT * FROM productos where id = ?`;
-        const [rows] = await connection.query(sql, [id]); // el id reemplaza el ?
+        const [rows] = await productModel.selectProductFromId(id);
 
         //hacemos la consulta, y tenemos el resultado en la variable rows
         //optimizacion 2: 
@@ -71,16 +68,14 @@ export const createProduct = async (req, res) => {
                 message: "Datos invalidos, asegurate de enviar todos los campos del formulario"
             });
         }
-
-        // Los placeholders ?, evitan inyecciones SQL para evitar ataques de este tipo
-        let sql = "INSERT INTO productos (nombre, imagen, categoria, precio) VALUES (?,?,?,?)";
-
-        //le envio estos valores a la DB
-        let [rows] = await connection.query(sql, [nombre, imagen, categoria, precio]);
+        
+        // cambie rows por result para obtener el insertId (rows no se usaba para nada)
+        const [result] = await productModel.insertProduct(nombre, imagen, categoria, precio);
 
         //devuelvo una respuesta 201 "created"
         res.status(201).json({
-            message: "producto encontrado con exito"
+            message: "producto creado con exito",
+            id: result.insertId
         });
 
     } catch(error) {
@@ -105,13 +100,7 @@ export const modifyProduct = async (req, res) => {
             });
         }
         
-        let sql = `
-        UPDATE productos
-        set nombre = ?, categoria = ?, precio = ?, imagen = ?
-        WHERE id = ?
-        `;
-        
-        let [result] = await connection.query(sql, [nombre, categoria, precio, imagen, id]);
+        let [result] = await productModel.updateProduct(nombre, categoria, precio, imagen, id);
         console.log(result);
 
         // Optimizacion 2: Testeamos que se actualizara este producto
@@ -122,7 +111,7 @@ export const modifyProduct = async (req, res) => {
         }
 
         res.status(200).json({
-            message: "Producto actualizo correctamente"
+            message: "Producto actualizado correctamente"
         });
 
     } catch (error) {
@@ -141,12 +130,11 @@ export const removeProduct = async (req,res) => {
         let { id } = req.params;
 
         //aca puedo hacer un borrado normal
-        let sql = "DELETE FROM productos WHERE id = ?";
+        // let sql = "DELETE FROM productos WHERE id = ?";
 
         //o puedo hacer una baja logica
         //let sql2 = "UPDATE products set active = 0 WHERE id = ?";
-
-        let [result] = await connection.query(sql, [id]);
+        let [result] = await productModel.deleteProduct(id);;
         console.log(result);
         // affectedRows: 1 -> Nos indica que hubo una fila que fue afectada
 
