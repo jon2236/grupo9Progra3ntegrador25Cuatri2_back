@@ -20,7 +20,7 @@ const updateProduct = (nombre, imagen, categoria, precio, id) => {
         UPDATE productos
         set nombre = ?, categoria = ?, precio = ?, imagen = ?
         WHERE id = ?
-     `;
+    `;
 
     return connection.query(sql, [nombre, categoria, precio, imagen, id]);
 }

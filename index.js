@@ -7,6 +7,8 @@ const PORT = environments.port;
 import cors from "cors";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js"; 
 import { productRoutes } from "./src/api/routes/index.js";
+import {__dirname, join} from "./src/api/utils/index.js";
+import connection from "./src/api/database/db.js";
 
 
 //Middlewares//
@@ -16,11 +18,35 @@ import { productRoutes } from "./src/api/routes/index.js";
     app.use(loggerUrl);
     app.use(express.urlencoded({ extended: true })); //parsear formularios y poder recivir datos en formulario
     app.use('/uploads', express.static('./src/uploads')); //sirvo mis imagenes
+    app.use(express.static(join(__dirname, "src/public")));
 
 
-    //RUTAS//
+//Configs//
+
+// configuramos EJS como motor de plantillas
+app.set("view engine", "ejs");
+app.set("views", join(__dirname, "src/views"));// nuestras archivos estaticos se serviran de la carpeta publics
+
+
+//Rutas//
 
 app.use("/api/productos", productRoutes )
+
+app.get("/dashboard", async (req, res) => {
+    try {
+        const [rows] = await connection.query("SELECT * FROM productos");
+        console.log(rows);
+
+        res.render("index", {
+            title: "dashboard",
+            about: "Tienda Koopa troopa",
+            productos: rows
+        });
+
+    } catch (error) {
+        console.error(error)
+    }
+});
 
 
 
