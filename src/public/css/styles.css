@@ -1,0 +1,181 @@
+@import "./navbar.css";
+
+body {
+    background-color: #18181a;
+    color: rgb(248, 246, 246);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    margin:  0 auto;
+    color: rgb(124, 124, 225);
+    font-size: 2rem;
+}
+
+h2 {
+    text-align: center;
+    margin:  0;
+    color: rgb(124, 124, 225);
+    font-size: 5rem;
+}
+
+h4 {
+    text-align: center;
+    margin:  0;
+    color: rgb(124, 124, 225);
+    font-size: 2rem;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    text-align:center;
+}
+
+.card-products {
+    border: 4px solid rgb(39, 38, 38);
+    padding: 6px;
+    color: grey;
+}
+
+.card-products button {
+    align-self: center;
+    background-color: #481baa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-products img {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+#cart-counter {
+    border: 2px solid rgb(41, 0, 0) ;
+    margin-right: 10px;
+    padding: 6px;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+}
+
+#cart-counter-span {
+    color: rgb(255, 0, 0);
+}
+
+#cart-section {
+    background-color:rgb(60, 61, 60);
+    color: rgb(8, 8, 8);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#reset-cart, .boton-eliminar {
+    align-self: center;
+    background-color: #481baa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 4rem;
+}
+
+.bloque-item {
+    text-decoration: none;
+    list-style: none;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+}
+
+#total {
+    font-size: 1.5rem;
+    color:rgb(124, 124, 225);
+    font-weight: bolder;
+}
+
+/* estilado de mi vista consultar */
+
+.title-section {
+    text-align: center;
+}
+
+#getProduct-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 2px solid #481baa;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+#getProduct-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: grey;
+}
+
+#getProduct-form input[type="number"] {
+    padding: 0.5rem;
+    border: 1px solid #777;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+#priceProd, #nameProd, #imageProd{
+    padding: 0.5rem;
+    border: 1px solid #777;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-form{
+    background-color: #481baa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.li-producto {
+    display: flex;
+}
+
+.producto-img {
+    max-width: 80px;
+    margin-right: 2rem;
+}
+
+.mensaje-error {
+    list-style: none;
+    text-align: center;
+    color: rgb(183, 84, 84);
+    background-color: rgb(245, 191, 191);
+    border-color: beige;
+    padding: 5px 30px;
+    border-radius: 3px;
+    max-width: 300px;
+}
