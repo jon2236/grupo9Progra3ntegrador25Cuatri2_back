@@ -1,0 +1,32 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+
+
+    <hr>
+    <hr>
+    <hr>
+
+    <main>
+        <h2>Tienda Koopa troopa</h2>
+    <hr>
+    <hr>
+    <hr>
+        <h1 class="title-section">Consultar un producto por ID</h1>
+
+        <form id="getProduct-form">
+            <label for="idProd">Id del producto</label>
+            <input type="number" name="idProd" id="idProd" required>
+
+            <input type="submit" value="Consultar producto"  class="btn-form">
+        </form>
+
+        <hr>
+        <section id="contenedor-productos">
+            <ul id="product-list"></ul>
+        </section>
+    </main>
+
+<script src="/js/consultar.js"></script>
+
+<%- include("partials/footer.ejs") %>
