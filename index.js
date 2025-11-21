@@ -32,13 +32,13 @@ app.set("views", join(__dirname, "src/views"));// nuestras archivos estaticos se
 
 app.use("/api/productos", productRoutes )
 
-app.get("/dashboard", async (req, res) => {
+app.get("/", async (req, res) => {
     try {
         const [rows] = await connection.query("SELECT * FROM productos");
         console.log(rows);
 
         res.render("index", {
-            title: "dashboard",
+            title: "Inicio",
             about: "Tienda Koopa troopa",
             productos: rows
         });
@@ -48,6 +48,13 @@ app.get("/dashboard", async (req, res) => {
     }
 });
 
+
+app.get("/consultar", (req, res) => {
+    res.render("consultar", {
+        title: "Consultar producto",
+        about: "Consultar un producto por ID"
+    });
+})
 
 
 app.listen(PORT, () => {
