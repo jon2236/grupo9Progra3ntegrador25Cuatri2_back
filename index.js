@@ -3,13 +3,13 @@ const app = express();
 
 import environments from "./src/api/config/environments.js"; // importamos las variables de entonro
 const PORT = environments.port;
+const session_key = environments.session_key;
 
 import cors from "cors";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js"; 
 import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import {__dirname, join} from "./src/api/utils/index.js";
-import connection from "./src/api/database/db.js";
-
+import session from "express-session";
 
 //Middlewares//
 
@@ -26,6 +26,15 @@ import connection from "./src/api/database/db.js";
 // configuramos EJS como motor de plantillas
 app.set("view engine", "ejs");
 app.set("views", join(__dirname, "src/views"));// nuestras archivos estaticos se serviran de la carpeta publics
+
+
+//middleware de sesion
+
+app.use(session({
+    secret: session_key, //aca firmo las cookies para evitar manipulacion
+    resave: false, //aca evito guardar la session si no hubo cambios
+    saveUninitialized: true // no guarde sesiones vacias
+}));
 
 
 //Rutas//
