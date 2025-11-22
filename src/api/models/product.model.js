@@ -15,7 +15,7 @@ const insertProduct = (nombre, imagen, categoria, precio) => {
     return connection.query(sql, [nombre, imagen, categoria, precio]);
 };
 
-const updateProduct = (nombre, imagen, categoria, precio, id) => {
+const updateProduct = (nombre, categoria, precio, imagen, id) => {
     const sql = `
         UPDATE productos
         set nombre = ?, categoria = ?, precio = ?, imagen = ?
