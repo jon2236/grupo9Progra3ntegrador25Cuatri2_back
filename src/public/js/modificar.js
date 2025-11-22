@@ -1,4 +1,4 @@
-let listaProductos = document.getElementById("lista-productos");
+let listaProductos = document.getElementById("product-list");
 let getProductForm = document.getElementById("getProduct-form");
 let url = "http://localhost:3500";
 let updateFormContainer = document.getElementById("updateFormContainer");
@@ -69,7 +69,7 @@ async function crearFormulario(producto) {
             <input type="number" name="precio" id="priceProd" value="${producto.precio}" required>
 
             <label for="categoryProd">Categoria</label>
-            <select name="categoria" id="categoryProd" required>
+            <select name="categoria" id="categoryProd" class="btn-form" required>
                 <option value="PlayStation">play</option>
                 <option value="Xbox">xbox</option>
                 <option value="Nintendo">nint</option>
@@ -77,7 +77,7 @@ async function crearFormulario(producto) {
 
             <input type="hidden" name="activo" id="activeProd" value="${producto.activo}">
 
-            <input type="submit" value="Actualizar producto">
+            <input type="submit" value="Actualizar producto" class="btn-form">
         </form>
     `;
 
@@ -118,7 +118,6 @@ async function actualizarProducto(event) {
             console.log(result.message);
             alert(result.message);
         } else {
-            // TO DO
             console.log(result.message);
             alert(result.message);
         }

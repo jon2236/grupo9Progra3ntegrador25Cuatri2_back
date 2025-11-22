@@ -91,7 +91,7 @@ export const createProduct = async (req, res) => {
 
 export const modifyProduct = async (req, res) => {
     try {
-        let {id, nombre, categoria, precio, imagen} = req.body;
+        let {id, nombre, categoria, precio, imagen, activo} = req.body;
 
         // Optimizacion 1: Validacion basica de datos
         if(!id || !nombre || !categoria || !precio || !activo) {
