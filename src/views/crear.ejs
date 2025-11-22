@@ -1,0 +1,40 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+<hr>
+<hr>
+<hr>
+
+<main>
+    <h2>Tienda Koopa troopa</h2>
+<hr>
+<hr>
+<hr>
+    <h1 class="title-section"><%= about %></h1>
+
+    <form id="altaProducts-container">
+        <label for="nameProd">Nombre</label>
+        <input type="text" name="nombre" id="nameProd" required>
+        
+        <label for="imageProduct">Imagen</label>
+        <input type="text" name="imagen" id="imageProd" required>
+        
+        <label for="price">Precio</label>
+        <input type="number" name="precio" id="priceProd" required>
+
+        <label for="categoryProd">Categoria</label>
+        <select name="categoria" id="categoryProd" class="btn-form">
+            <option value="PlayStation">play</option>
+            <option value="Xbox">xbox</option>
+            <option value="Nintendo">nint</option>
+        </select>
+
+        <input type="submit" value="Crear producto"  class="btn-form">
+    </form>
+
+    <hr>
+    <section id="contenedor-productos"></section>
+</main>
+
+<script src="js/crear.js"></script>
+
+<%- include("partials/footer.ejs") %>

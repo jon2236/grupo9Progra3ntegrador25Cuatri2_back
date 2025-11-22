@@ -32,6 +32,9 @@ app.set("views", join(__dirname, "src/views"));// nuestras archivos estaticos se
 
 app.use("/api/productos", productRoutes )
 
+
+
+
 app.get("/", async (req, res) => {
     try {
         const [rows] = await connection.query("SELECT * FROM productos");
@@ -55,6 +58,32 @@ app.get("/consultar", (req, res) => {
         about: "Consultar un producto por ID"
     });
 })
+
+
+app.get("/crear", (req,res) => {
+    res.render("crear", {
+        title: "Crear producto",
+        about: "Crear un nuevo producto"
+    })
+})
+
+
+app.get("/eliminar", (req,res) => {
+    res.render("eliminar", {
+        title: "Eliminar producto",
+        about: "Eliminar un producto por ID"
+    })
+})
+
+
+app.get("/modificar", (req, res) => {
+    res.render("modificar", {
+        title: "modificar producto",
+        about: "Modificar un producto por ID"
+    })
+})
+
+
 
 
 app.listen(PORT, () => {
