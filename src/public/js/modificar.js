@@ -27,20 +27,29 @@ getProductForm.addEventListener("submit", async (event) => {
     console.log(datos)
 
     //extraigo de la respuiesta payload, el 1er resultado q contiene el obj q consulto
-    let producto = datos.payload[0];
-    console.log(producto)
 
-    let htmlProducto = `
-        <li class="li-producto">
-                <img class="producto-img" src="${url}/uploads/${producto.imagen}" alt="${producto.nombre}">
-                <p>Id: ${producto.id} / Nombre: ${producto.nombre} / <strong>Precio: ${producto.precio}</strong></p>
-        </li>
-        <li class="li-botonera">
-            <input type="button" id="updateProduct_button" value="Actualizar producto" class="btn-form">
-        </li>
-    `;
 
-    listaProductos.innerHTML = htmlProducto;
+    if(response.ok) {
+        let producto = datos.payload[0];
+        console.log(producto)
+
+        let htmlProducto = `
+            <li class="li-producto">
+                    <img class="producto-img" src="${url}/uploads/${producto.imagen}" alt="${producto.nombre}">
+                    <p>Id: ${producto.id} / Nombre: ${producto.nombre} / <strong>Precio: ${producto.precio}</strong></p>
+            </li>
+            <li class="li-botonera">
+                <input type="button" id="updateProduct_button" value="Actualizar producto" class="btn-form">
+            </li>
+        `;
+
+        listaProductos.innerHTML = htmlProducto;
+    } else {
+        console.log(datos);
+        console.log(datos.message);
+
+        mostrarError(datos.message)
+    }
 
     let updateProduct_button = document.getElementById("updateProduct_button");
 
@@ -126,4 +135,16 @@ async function actualizarProducto(event) {
 
     }
     
+}
+
+
+function mostrarError(message) {
+    listaProductos.innerHTML = `
+        <li class="mensaje-error">
+            <p>
+                <strong>Error:</strong>
+                <span>${message}</span>
+            </p>
+        </li>
+    `;
 }

@@ -27,21 +27,30 @@ getProductForm.addEventListener("submit", async (event) => {
 
     let datos = await response.json();
 
-    // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
-    let producto = datos.payload[0];
-    console.log(producto);
 
-    let htmlProducto = `
-    <li class="li-producto">
-            <img class="producto-img" src="http://localhost:3500/uploads/${producto.imagen}" alt="${producto.nombre}">
-            <p>Id: ${producto.id} / Nombre: ${producto.nombre} / <strong>Precio: ${producto.precio}</strong></p>
-    </li>
-    <li class="li-botonera">
-        <input type="button" id="deleteProduct_button" value="Eliminar producto" class="btn-form">
-    </li>
-    `;
+    if(response.ok) {
+        // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
+        let producto = datos.payload[0];
+        console.log(producto);
 
-    listaProductos.innerHTML = htmlProducto;
+        let htmlProducto = `
+        <li class="li-producto">
+                <img class="producto-img" src="http://localhost:3500/uploads/${producto.imagen}" alt="${producto.nombre}">
+                <p>Id: ${producto.id} / Nombre: ${producto.nombre} / <strong>Precio: ${producto.precio}</strong></p>
+        </li>
+        <li class="li-botonera">
+            <input type="button" id="deleteProduct_button" value="Eliminar producto" class="btn-form">
+        </li>
+        `;
+
+        listaProductos.innerHTML = htmlProducto;
+    } else {
+        console.log(datos);
+        console.log(datos.message);
+
+        mostrarError(datos.message)
+    }
+
 
     let deleteProduct_button = document.getElementById("deleteProduct_button");
 
@@ -85,4 +94,15 @@ async function eliminarProducto(id) {
         console.error("Error en la solicitud DELETE: ", error);
         alert("Ocurrio un error al eliminar un producto");
     }
+}
+
+function mostrarError(message) {
+    listaProductos.innerHTML = `
+        <li class="mensaje-error">
+            <p>
+                <strong>Error:</strong>
+                <span>${message}</span>
+            </p>
+        </li>
+    `;
 }
