@@ -1,5 +1,7 @@
 const url = "http://localhost:3500";
 let altaProducts_container = document.getElementById("altaProducts-container");
+let cart = JSON.parse(localStorage.getItem("cart")) || []; //me traigo de mi main el contador de mi carrito
+let cartCounter = document.getElementById("cart-counter-span");
 
 altaProducts_container.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -43,3 +45,10 @@ altaProducts_container.addEventListener("submit", async (event) => {
         alert("Error al procesar la solicitud")
     }
 })
+
+
+function actualizarContadorCarrito() {
+    cartCounter.textContent = `${cart.length} `;
+}
+
+actualizarContadorCarrito();

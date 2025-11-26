@@ -40,7 +40,6 @@ app.use(session({
 //Rutas//
 
 app.use("/api/productos", productRoutes )
-
 app.use("/", viewRoutes);
 
 
