@@ -4,7 +4,8 @@
 let listaProductos = document.getElementById("product-list");
 let getProductForm = document.getElementById("getProduct-form");
 let url = "http://localhost:3500";
-
+let cart = JSON.parse(localStorage.getItem("cart")) || []; //me traigo de mi main el contador de mi carrito
+let cartCounter = document.getElementById("cart-counter-span");
 
 getProductForm.addEventListener("submit", async (event) => {
 
@@ -68,6 +69,12 @@ function mostrarError(message) {
         </li>
     `;
 }
+
+function actualizarContadorCarrito() {
+    cartCounter.textContent = `${cart.length} `;
+}
+
+actualizarContadorCarrito();
 
 
 /*

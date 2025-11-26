@@ -67,8 +67,8 @@ function mostrarProductos(array) {
 
 
 const cartItems = document.getElementById("cart-items");
-let cart = JSON.parse(localStorage.getItem("cart")) || []; // ejercicio 6. parseao a json para q lo pueda leer sino no lo puedo usar. de texto plano a jason
-let cartCounter = document.getElementById("cart-counter-span");// ejercicio 7. contador de productos en mi carrito
+let cart = JSON.parse(localStorage.getItem("cart")) || []; // parseao a json para q lo pueda leer sino no lo puedo usar. de texto plano a jason
+let cartCounter = document.getElementById("cart-counter-span");//contador de productos en mi carrito
 console.log("cartCounter:", cartCounter);
 const totalGasto = document.getElementById("total");
 
