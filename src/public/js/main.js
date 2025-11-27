@@ -1,16 +1,6 @@
 let url = "http://localhost:3500";
 
 
-//ejercicio 2. imprimir datos de obj alumno y mostrarlo por consola y html. 
-
-// const alumno = {dni: 22222222, nombre: "jonatan", apellido: "quiroga"}
-// // mi elemnto html (<span>) donde se inyectaran los datos del alumno. guardo mi obj en una variable para una facil manipulacion(como voy a hacer con muchas cosas en el codigo)
-// const userInfo = document.getElementById("user-info-span") 
-
-// function imprimirDatosAlumno() { 
-//     userInfo.textContent = `${alumno.nombre} ${alumno.apellido}`
-// }
-
 
 
 //funcion de filtro con input//

@@ -28,10 +28,10 @@ getProductForm.addEventListener("submit", async (event) => {
 
     let datos = await response.json();
 
-
+    let producto = null
     if(response.ok) {
         // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
-        let producto = datos.payload[0];
+        producto = datos.payload[0];
         console.log(producto);
 
         let htmlProducto = `

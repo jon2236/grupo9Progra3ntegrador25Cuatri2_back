@@ -30,9 +30,9 @@ getProductForm.addEventListener("submit", async (event) => {
 
     //extraigo de la respuiesta payload, el 1er resultado q contiene el obj q consulto
 
-
+    let producto = null
     if(response.ok) {
-        let producto = datos.payload[0];
+        producto = datos.payload[0];
         console.log(producto)
 
         let htmlProducto = `
